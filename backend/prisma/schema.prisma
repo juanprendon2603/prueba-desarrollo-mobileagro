@@ -1,0 +1,42 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Cliente {
+  id             Int             @id @default(autoincrement())
+  nombreCliente  String
+  direccion      String
+  facturas       CabezaFactura[]
+}
+
+model Producto {
+  id             Int             @id @default(autoincrement())
+  nombreProducto String
+  valor          Float
+  detalles       DetalleFactura[]
+}
+
+model CabezaFactura {
+  numero     Int             @id @default(autoincrement())
+  fecha      DateTime        @default(now())
+  clienteId  Int
+  total      Float
+  cliente    Cliente         @relation(fields: [clienteId], references: [id])
+  detalles   DetalleFactura[]
+}
+
+model DetalleFactura {
+  id          Int           @id @default(autoincrement())
+  numero      Int
+  productoId  Int
+  cantidad    Int
+  valor       Float
+  factura     CabezaFactura @relation(fields: [numero], references: [numero])
+  producto    Producto      @relation(fields: [productoId], references: [id])
+}
