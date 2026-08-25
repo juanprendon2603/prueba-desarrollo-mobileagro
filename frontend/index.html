@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión Comercial</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <header class="header">
+        <div>
+          <h1>Gestión Comercial</h1>
+          <p>Clientes, productos y facturación</p>
+        </div>
+      </header>
+
+      <nav class="tabs">
+        <button class="tab active" data-section="clientes">
+          Clientes
+        </button>
+
+        <button class="tab" data-section="productos">
+          Productos
+        </button>
+
+        <button class="tab" data-section="facturas">
+          Facturas
+        </button>
+      </nav>
+
+      <main>
+        <section id="clientes" class="section active">
+          <div class="section-header">
+            <div>
+              <h2>Clientes</h2>
+              <p>Administra los clientes registrados.</p>
+            </div>
+
+            <button id="btnNuevoCliente" class="primary-button">
+              + Nuevo cliente
+            </button>
+          </div>
+
+          <div id="clienteFormContainer" class="form-container hidden">
+            <h3 id="clienteFormTitle">Nuevo cliente</h3>
+
+            <form id="clienteForm">
+              <input type="hidden" id="clienteId" />
+
+              <div class="form-grid">
+                <div class="field">
+                  <label for="nombreCliente">Nombre</label>
+                  <input
+                    id="nombreCliente"
+                    type="text"
+                    placeholder="Nombre del cliente"
+                    required
+                  />
+                </div>
+
+                <div class="field">
+                  <label for="direccionCliente">Dirección</label>
+                  <input
+                    id="direccionCliente"
+                    type="text"
+                    placeholder="Dirección"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="primary-button">
+                  Guardar
+                </button>
+
+                <button
+                  type="button"
+                  id="btnCancelarCliente"
+                  class="secondary-button"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Dirección</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody id="clientesTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="productos" class="section">
+          <div class="section-header">
+            <div>
+              <h2>Productos</h2>
+              <p>Administra el catálogo de productos.</p>
+            </div>
+
+            <button id="btnNuevoProducto" class="primary-button">
+              + Nuevo producto
+            </button>
+          </div>
+
+          <div id="productoFormContainer" class="form-container hidden">
+            <h3 id="productoFormTitle">Nuevo producto</h3>
+
+            <form id="productoForm">
+              <input type="hidden" id="productoId" />
+
+              <div class="form-grid">
+                <div class="field">
+                  <label for="nombreProducto">Producto</label>
+                  <input
+                    id="nombreProducto"
+                    type="text"
+                    placeholder="Nombre del producto"
+                    required
+                  />
+                </div>
+
+                <div class="field">
+                  <label for="valorProducto">Valor</label>
+                  <input
+                    id="valorProducto"
+                    type="number"
+                    min="0"
+                    placeholder="0"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="primary-button">
+                  Guardar
+                </button>
+
+                <button
+                  type="button"
+                  id="btnCancelarProducto"
+                  class="secondary-button"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Producto</th>
+                  <th>Valor</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody id="productosTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="facturas" class="section">
+          <div class="section-header">
+            <div>
+              <h2>Facturas</h2>
+              <p>Crea y consulta las facturas.</p>
+            </div>
+
+            <button id="btnNuevaFactura" class="primary-button">
+              + Nueva factura
+            </button>
+          </div>
+
+          <div id="facturaFormContainer" class="form-container hidden">
+            <h3>Nueva factura</h3>
+
+            <form id="facturaForm">
+              <div class="field">
+                <label for="facturaCliente">Cliente</label>
+                <select id="facturaCliente" required></select>
+              </div>
+
+              <div class="add-product-row">
+                <div class="field">
+                  <label for="facturaProducto">Producto</label>
+                  <select id="facturaProducto"></select>
+                </div>
+
+                <div class="field small-field">
+                  <label for="facturaCantidad">Cantidad</label>
+                  <input
+                    id="facturaCantidad"
+                    type="number"
+                    min="1"
+                    value="1"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  id="btnAgregarProducto"
+                  class="secondary-button"
+                >
+                  Agregar
+                </button>
+              </div>
+
+              <div class="card invoice-preview">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Producto</th>
+                      <th>Precio</th>
+                      <th>Cantidad</th>
+                      <th>Subtotal</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="facturaDetallesBody"></tbody>
+                </table>
+
+                <div class="invoice-total">
+                  Total:
+                  <strong id="facturaTotal">$0</strong>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="primary-button">
+                  Crear factura
+                </button>
+
+                <button
+                  type="button"
+                  id="btnCancelarFactura"
+                  class="secondary-button"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <table>
+              <thead>
+                <tr>
+                  <th>Número</th>
+                  <th>Cliente</th>
+                  <th>Fecha</th>
+                  <th>Total</th>
+                  <th>Detalles</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody id="facturasTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="notification" class="notification hidden"></div>
+
+    <script type="module" src="./dist/app.js"></script>
+  </body>
+</html>
