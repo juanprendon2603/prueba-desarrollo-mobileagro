@@ -1,5 +1,9 @@
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL =
+  window.location.hostname === 'localhost'
+    ? 'http://localhost:3000'
+    : 'https://prueba-desarrollo-mobileagro.onrender.com';
 
+    
 import type {
   Cliente,
   Producto,
