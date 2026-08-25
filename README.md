@@ -1,83 +1,69 @@
-# Prueba de Desarrollo
-
-Solución de la prueba de desarrollo, dividida en dos ejercicios independientes.
+# Prueba de desarrollo — Mobileagro
 
 ## Tecnologías
 
 * TypeScript
+* Node.js
 * NestJS
-* Prisma
+* Prisma ORM
 * SQLite
-* HTML
-* CSS
-* API REST
+* HTML, CSS y TypeScript
+* Netlify para el frontend
+* Render para el backend
 
----
+## Ejercicio 1
 
-## Ejercicio 1 — Cálculo de salario
+Ejercicio desarrollado en TypeScript utilizando Node.js y `readline-sync`.
 
-Aplicación desarrollada en TypeScript para realizar el cálculo del salario semanal de un empleado, teniendo en cuenta las horas trabajadas y las horas extras según las condiciones establecidas en el ejercicio.
-
-### Ejecución
+Para ejecutarlo localmente:
 
 ```bash
 cd ejercicio-1
 npm install
-npm run dev
+npm run build
 ```
 
----
+Luego se puede ejecutar según las instrucciones del ejercicio.
 
-## Ejercicio 2 — Gestión comercial
+**Demo:**
+https://prueba-desarrollo-mobileagro-1.netlify.app/
 
-Aplicación web para la gestión de:
+## Ejercicio 2
 
-* Clientes.
-* Productos.
-* Facturas.
-* Detalles de factura.
+Aplicación de gestión comercial con:
 
-Permite crear, consultar, editar y eliminar clientes y productos, además de crear y consultar facturas con sus respectivos detalles.
+* Gestión de clientes.
+* Gestión de productos.
+* Creación y consulta de facturas.
+* Detalle de productos por factura.
+* Edición y eliminación de registros.
+* Persistencia de datos mediante Prisma y SQLite.
 
-### Backend
+### Ejecución local
 
-Desarrollado con NestJS, utilizando Prisma como ORM y SQLite como base de datos.
+Backend:
 
 ```bash
 cd backend
 npm install
 npx prisma generate
-npx prisma migrate dev
+npx prisma db push
 npm run start:dev
-```
-
-Backend:
-
-```text
-http://localhost:3000
-```
-
-### Frontend
-
-Desarrollado con HTML, CSS y TypeScript.
-
-```bash
-cd frontend
-npm install
-npm run dev
 ```
 
 Frontend:
 
-```text
-http://localhost:8080
-```
-
-### Base de datos
-
-Para consultar la base de datos mediante Prisma Studio:
-
 ```bash
-cd backend
-npx prisma studio
+cd frontend
+npm install
+npx tsc
+npx http-server .
 ```
+
+El frontend utiliza el backend local cuando se ejecuta en `localhost` y el backend desplegado cuando se accede desde la versión publicada.
+
+**Demo:**
+https://prueba-desarrollo-mobileagro.netlify.app/
+
+**Backend:**
+https://prueba-desarrollo-mobileagro.onrender.com
